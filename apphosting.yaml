@@ -32,10 +32,6 @@ env:
   - variable: GOOGLE_API_KEY
     secret: GOOGLE_API_KEY
 
-  - variable: GEMINI_API_KEY
-    # 특정 버전으로 고정하려면 뒤에 @버전번호를 붙일 수 있음 (예: mySecret@5)
-    secret: GEMINI_API_KEY
-
 # 앱 빌드/실행 커맨드 커스터마이즈 (필요시)
 scripts:
   buildCommand: npm run build
