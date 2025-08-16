@@ -1,0 +1,10 @@
+# 환경 변수
+.env
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store

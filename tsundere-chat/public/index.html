@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>츤데레 챗봇</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="title">츤데레 챗봇</div>
+      <div class="actions">
+        <button id="clearBtn" class="btn secondary" title="대화 초기화">대화 초기화</button>
+      </div>
+    </header>
+
+    <main id="chatArea" class="chat" aria-live="polite" aria-busy="false"></main>
+
+    <footer class="composer">
+      <form id="chatForm" autocomplete="off">
+        <textarea id="input" rows="1" placeholder="메시지를 입력하세요 (Shift+Enter 줄바꿈)"
+          aria-label="메시지 입력" required></textarea>
+        <button id="sendBtn" class="btn primary" aria-label="보내기" title="보내기">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+      <div class="hint">대화는 브라우저 <b>localStorage</b>에 자동 저장돼요. 탭을 닫아도 이어서 볼 수 있어요.</div>
+    </footer>
+  </div>
+
+  <script src="./app.js" type="module"></script>
+</body>
+</html>
