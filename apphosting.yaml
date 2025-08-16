@@ -1,0 +1,47 @@
+# apphosting.yaml (예시)
+# 프로젝트 루트에 위치시키세요 (예: ./apphosting.yaml)
+
+# Cloud Run 리소스/스케일링 설정
+runConfig:
+  minInstances: 0
+  maxInstances: 10
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 512
+
+# VPC/네트워크 접근(필요하면 활성화)
+# runConfig:
+#   vpcAccess:
+#     egress: ALL_TRAFFIC
+#     connector: connector-id
+
+# 빌드/런타임 환경 변수 및 Secret 참조
+env:
+  # 일반(비밀이 아닌) 환경 변수 (빌드 및 런타임에서 사용 가능)
+  - variable: NODE_ENV
+    value: production
+    availability: ["BUILD", "RUNTIME"]
+
+  # 브라우저에서 노출되어도 되는 값 (NEXT_PUBLIC_ 접두사 사용)
+  - variable: NEXT_PUBLIC_API_BASE
+    value: "https://example.api/"
+    availability: ["BUILD", "RUNTIME"]
+
+  # 비밀(secret) : Cloud Secret Manager 또는 firebase apphosting:secrets로 관리된 값 참조
+  # (아래 `GOOGLE_API_KEY`와 `GEMINI_API_KEY`는 직접 값 대신 secret 이름을 참조)
+  - variable: GOOGLE_API_KEY
+    secret: GOOGLE_API_KEY
+
+  - variable: GEMINI_API_KEY
+    # 특정 버전으로 고정하려면 뒤에 @버전번호를 붙일 수 있음 (예: mySecret@5)
+    secret: GEMINI_API_KEY
+
+# 앱 빌드/실행 커맨드 커스터마이즈 (필요시)
+scripts:
+  buildCommand: npm run build
+  runCommand: npm start
+
+# 배포 시 포함할 출력 파일/폴더 지정 (필요시)
+# outputFiles:
+#   serverApp:
+#     include: [".output", "dist", "server.js"]
